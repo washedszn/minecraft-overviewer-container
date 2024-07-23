@@ -1,0 +1,2 @@
+# This is a placeholder file, content will be dynamically replaced by entrypoint.sh
+* * * * * /bin/bash /app/update.sh >> /var/log/cron.log 2>&1
