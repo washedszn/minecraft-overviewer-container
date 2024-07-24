@@ -1,4 +1,4 @@
 .env
 data
 web
-config.py
+config/config.py

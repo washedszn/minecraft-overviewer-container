@@ -13,6 +13,13 @@ echo "OVERWORLD=${OVERWORLD}" >> /var/log/cron.log
 echo "NETHER=${NETHER}" >> /var/log/cron.log
 echo "END=${END}" >> /var/log/cron.log
 
+# Check if the config file exists
+CONFIG_FILE="/app/config/config.py"
+if [ ! -f "$CONFIG_FILE" ]; then
+    echo "Error: Config file $CONFIG_FILE does not exist. Exiting." >> /var/log/cron.log
+    exit 1
+fi
+
 # URL-decode the FTP password
 DECODED_FTP_PASSWORD=$(python3 -c "import urllib.parse; print(urllib.parse.unquote('${FTP_PASSWORD}'))")
 
@@ -38,6 +45,6 @@ EOF
 
 # Run the Minecraft Overviewer to generate the index.html
 echo "Running Minecraft Overviewer..." >> /var/log/cron.log
-#overviewer --config=config.py --no-tile-checks
+overviewer --config=config/config.py
 
 echo "Update completed at $(date)" >> /var/log/cron.log

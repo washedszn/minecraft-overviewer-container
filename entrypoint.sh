@@ -30,7 +30,6 @@ cron
 
 # Tail the cron log file to keep it in the container logs
 tail -f /var/log/cron.log &
-tail -f /var/log/cron_test.log &
 
 # Start the web server
 exec python3 -m http.server ${WEB_PORT} --directory /app/web
