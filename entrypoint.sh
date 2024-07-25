@@ -16,6 +16,9 @@ cat /etc/cron.d/update_cron
 chmod 0644 /etc/cron.d/update_cron
 crontab /etc/cron.d/update_cron
 
+# Start the web server in the background
+python3 -m http.server ${WEB_PORT} --directory /app/web &
+
 # If textures.zip is not present in /data, download it
 if [ ! -f /app/data/textures.zip ]; then
     echo "Downloading textures to /app/data"
@@ -29,7 +32,4 @@ fi
 cron
 
 # Tail the cron log file to keep it in the container logs
-tail -f /var/log/cron.log &
-
-# Start the web server
-exec python3 -m http.server ${WEB_PORT} --directory /app/web
+tail -f /var/log/cron.log
