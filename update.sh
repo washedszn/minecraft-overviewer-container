@@ -45,6 +45,6 @@ EOF
 
 # Run the Minecraft Overviewer to generate the index.html
 echo "Running Minecraft Overviewer..." >> /var/log/cron.log
-overviewer --config=config/config.py --skip-players
+overviewer --config=/app/config/config.py --skip-players
 
 echo "Update completed at $(date)" >> /var/log/cron.log
